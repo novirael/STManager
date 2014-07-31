@@ -55,6 +55,6 @@ docs/_build/
 # PyCharm
 .idea/
 
-# Data bases
+# Databases
 *.sqlite3
 *.sql
