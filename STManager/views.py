@@ -1,5 +1,5 @@
-from django.views.generic import DetailView
+from django.views.generic import TemplateView
 
 
-class Home(DetailView):
-    template_name = 'templates/home.html'
+class Home(TemplateView):
+    template_name = 'home.html'
