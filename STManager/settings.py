@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'bootstrap_toolkit',
     'bootstrapform',
+    'tasks'
 )
 
 MIDDLEWARE_CLASSES = (
