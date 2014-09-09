@@ -2,5 +2,30 @@
 
 
 {% block content %}
-<h1>hello world !</h1>
+    {% if tasks %}
+        <table class="table table-hover">
+            <tr>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Czas</th>
+                <th>Akcja</th>
+            </tr>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.name }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.time }}</td>
+                <td>{{ task.start_time }}
+                    {% if task.start_time %}
+                        <a href="{{ task.id }}/stop" class="btn btn-danger btn-xs" role="button">STOP</a>
+                    {% else %}
+                        <a href="{{ task.id }}/start" class="btn btn-success btn-xs" role="button">START</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>Nie masz żadnych zadań</p>
+    {% endif %}
 {% endblock %}
