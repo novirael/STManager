@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    {% if projects %}
+        <table class="table table-hover">
+            <tr>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Data utworzenia</th>
+                <th>Przepracowane godziny</th>
+            </tr>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.name }}</td>
+                <td>{{ project.description }}</td>
+                <td>{{ project.start_date }}</td>
+                <td>{{ project.sum_hours_work }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>Nie masz żadnych projektów</p>
+    {% endif %}
+{% endblock %}

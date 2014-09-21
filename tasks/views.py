@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, time
 from django.views.generic import TemplateView, FormView, RedirectView
 from tasks.forms import TaskForm
 from tasks.models import Task
@@ -25,6 +25,7 @@ class AddTask(FormView):
 
 class StartTask(RedirectView):
     url = 'http://127.0.0.1:8000/tasks'
+    permanent = False
 
     def dispatch(self, request, *args, **kwargs):
         task = Task.objects.get(id=kwargs['id'])
@@ -35,9 +36,18 @@ class StartTask(RedirectView):
 
 class StopTask(RedirectView):
     url = 'http://127.0.0.1:8000/tasks'
+    permanent = False
 
     def dispatch(self, request, *args, **kwargs):
         task = Task.objects.get(id=kwargs['id'])
+        time_stop = datetime.now()
+
+        delta = time_stop - task.start_time
+        task.time += int(delta.total_seconds())
+
+
+
         task.start_time = None
+
         task.save()
         return super(StopTask, self).dispatch(request, *args, **kwargs)
