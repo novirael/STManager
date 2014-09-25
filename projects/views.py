@@ -12,11 +12,14 @@ class ProjectView(TemplateView):
         context['projects'] = Project.objects.all()
         return context
 
+
 class AddProject(FormView):
     template_name = 'projects/add.html'
-    success_url = 'http://127.0.0.1:8000/projects'
     form_class = ProjectForm
 
     def form_valid(self, form):
         form.save()
         return super(AddProject, self).form_valid(form)
+
+    def get_success_url(self):
+        return "/projects"

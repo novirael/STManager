@@ -7,9 +7,8 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    url(r'^$', TasksIndex.as_view()),
+    url(r'^$', TasksIndex.as_view(), name="all_tasks"),
     url(r'^add/$', AddTask.as_view()),
     url(r'^(?P<id>\d+)/start/$', StartTask.as_view()),
     url(r'^(?P<id>\d+)/stop/$', StopTask.as_view()),
 )
-

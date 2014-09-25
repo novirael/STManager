@@ -8,6 +8,7 @@ class TaskForm(ModelForm):
         fields = ['name', 'description', 'time', 'project']
         widgets = {
             'name': Textarea(attrs={'cols': 8, 'rows': 1}),
-            'description': Textarea(attrs={'cols': 8, 'rows': 1, 'placeholder': 'dupa'}),
+            'description': Textarea(attrs={'cols': 8, 'rows': 1,
+                                           'placeholder': 'dupa'}),
             'time': Textarea(attrs={'cols': 8, 'rows': 1}),
         }
