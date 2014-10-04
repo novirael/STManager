@@ -2,6 +2,7 @@
 
 
 {% block content %}
+    <h2>Twoje wszystkie zadania:</h2>
     {% if tasks %}
         <table class="table table-hover">
             <tr>
@@ -15,7 +16,7 @@
                 <td>{{ task.name }}</td>
                 <td>{{ task.description }}</td>
                 <td>{{ task.time }}</td>
-                <td>{{ task.start_time }}
+                <td>
                     {% if task.start_time %}
                         <a href="{{ task.id }}/stop" class="btn btn-danger btn-xs" role="button">STOP</a>
                     {% else %}
@@ -28,4 +29,5 @@
     {% else %}
         <p>Nie masz żadnych zadań</p>
     {% endif %}
+    <p class="text-justify"><a href="add/" class="btn btn-primary" role="button">Dodaj zadanie</a></p>
 {% endblock %}

@@ -1,5 +1,6 @@
 from datetime import datetime, time
 from django.views.generic import TemplateView, FormView, RedirectView
+from projects.models import Project
 from tasks.forms import TaskForm
 from tasks.models import Task
 
@@ -16,6 +17,11 @@ class TasksIndex(TemplateView):
 class AddTask(FormView):
     template_name = 'tasks/add.html'
     form_class = TaskForm
+
+    def get_context_data(self, **kwargs):
+        context = super(AddTask, self).get_context_data(**kwargs)
+        context['project'] = Project.objects.all().values()
+        return context
 
     def form_valid(self, form):
         form.save()
