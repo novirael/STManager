@@ -3,4 +3,3 @@ from projects.models import Project
 
 
 admin.site.register(Project)
-# Register your models here.

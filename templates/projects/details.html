@@ -3,8 +3,7 @@
 
 {% block content %}
 
-
-        <div class="page-header">
+    <div class="page-header">
         <h1>{{ project.name }}</h1>
         <p class="lead">{{ project.description }}</p>
 
@@ -19,35 +18,26 @@
 
         <h3>Łączny czas pracy nad projektem:</h3>
         <p>{{ time }}</p>
-        </div>
+    </div>
 
-        <h3>Zadania w projekcie:</h3>
-        {% if tasks %}
-            <table class="table table-hover">
+    <h3>Zadania w projekcie:</h3>
+    {% if tasks %}
+        <table class="table table-hover">
+            <tr>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Czas</th>
+            </tr>
+            {% for task in tasks %}
                 <tr>
-                    <th>Nazwa</th>
-                    <th>Opis</th>
-                    <th>Czas</th>
-                    <th>Akcja</th>
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.time }}</td>
                 </tr>
-                {% for task in tasks %}
-                    <tr>
-                        <td>{{ task.name }}</td>
-                        <td>{{ task.description }}</td>
-                        <td>{{ task.time }}</td>
-                        <td>
-                            {% if task.start_time %}
-                                <!-- Jak tutaj odwyływać się do linku w href np. /tasks/task.id/stop ??  -->
-                                <a href="/tasks/{{ task.id }}/stop" class="btn btn-danger btn-xs" role="button">STOP</a>
-                            {% else %}
-                                <a href="/tasks/{{ task.id }}/start" class="btn btn-success btn-xs" role="button">START</a>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </table>
-        {% else %}
-            <p>Nie masz żadnych zadań</p>
-        {% endif %}
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Nie masz żadnych zadań</p>
+    {% endif %}
 
 {% endblock %}
