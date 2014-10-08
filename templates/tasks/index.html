@@ -11,12 +11,22 @@
                 <th>Nazwa</th>
                 <th>Opis</th>
                 <th>Czas</th>
+                <th>Akcja</th>
+                <th>Więcej</th>
             </tr>
         {% for task in tasks %}
             <tr>
                 <td>{{ task.name }}</td>
                 <td>{{ task.description }}</td>
                 <td>{{ task.time }}</td>
+                <td>
+                    {% if task.start_time %}
+                        <a href="{% url 'tasks_app:stop' task.id %}" class="btn btn-xs btn-danger" role="button">Stop</a>
+                    {% else %}
+                        <a href="{% url 'tasks_app:start' task.id %}" class="btn btn-xs btn-success" role="button">Start</a>
+                    {% endif %}
+                </td>
+                <td><a href="{% url 'tasks_app:details' task.id %}" class="btn btn-xs btn-primary" role="button">Szczegóły</a></td>
             </tr>
         {% endfor %}
         </table>
