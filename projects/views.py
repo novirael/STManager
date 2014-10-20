@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from projects.models import Project
 from projects.forms import ProjectForm
+from projects.utils import total_work_time_project
 from tasks.models import Task
 
 
@@ -28,17 +29,11 @@ class AddProject(FormView):
 class ProjectDetails(TemplateView):
     template_name = 'projects/details.html'
 
-    def total_work_time_project(self, tasks):
-        time = 0
-        for task in tasks:
-            time += task.time
-        return time
 
     def get_context_data(self, **kwargs):
         context = super(ProjectDetails, self).get_context_data(**kwargs)
         tasks = Task.objects.filter(project_id=kwargs['id'])
         context['project'] = Project.objects.get(id=kwargs['id'])
         context['tasks'] = tasks
-        context['time'] = self.total_work_time_project(tasks)
+        context['time'] = total_work_time_project(tasks)
         return context
-

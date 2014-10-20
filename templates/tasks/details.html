@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <div class="page-header">
+        <h1>{{ task.project }}</h1>
+        <p class="lead">{{ task.name }}</p>
+        <p class="lead">{{ task.description }}</p>
+        <h3>Czas pracy nad tym zadaniem:</h3>
+        <p>{{ task.time }}</p>
+    </div>
+
+{% endblock %}

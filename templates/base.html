@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+{% load static %}
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -10,10 +13,7 @@
     <title>STManager</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="{{ STATIC_URL }}css/sticky-footer-navbar.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/forms.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 </head>
 
 <body>
@@ -46,7 +46,7 @@
             <p>This example is a quick exercise to illustrate how the default,
                 static navbar and fixed to top navbar work. It includes the
                 responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-            <p><a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs »</a></p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">View navbar docs »</a></p>
         </div>
         {% endblock %}
 
@@ -55,7 +55,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
 
 </body>
 
