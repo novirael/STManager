@@ -9,7 +9,6 @@
         <table class="table table-hover">
             <tr>
                 <th>Nazwa</th>
-                <th>Opis</th>
                 <th>Czas</th>
                 <th>Akcja</th>
                 <th>Więcej</th>
@@ -17,7 +16,6 @@
         {% for task in tasks %}
             <tr>
                 <td>{{ task.name }}</td>
-                <td>{{ task.description }}</td>
                 <td>{{ task.time }}</td>
                 <td>
                     {% if task.start_time %}
