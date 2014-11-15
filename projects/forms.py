@@ -8,6 +8,7 @@ class ProjectForm(ModelForm):
         fields = [
             'name',
             'description',
+            'start_date',
             'finish_date',
             'sum_hours_work',
             'link_repository'
