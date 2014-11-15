@@ -3,32 +3,32 @@
 
 {% block content %}
 
-    <h2>Twoje wszystkie projekty:</h2>
-    <a href="{% url 'projects_app:add' %}" class="btn btn-primary" role="button">Dodaj nowy projekt</a>
+    <div class="page-header">
+        <h1>All your projects</h1>
+    </div>
 
-    {% if projects %}
-        <table class="table table-hover">
-            <tr>
-                <th>Nazwa</th>
-                <th>Opis</th>
-                <th>Data utworzenia</th>
-                <th>Przepracowane godziny</th>
-                <th>Szczegóły</th>
-            </tr>
-        {% for project in projects %}
-            <tr>
-                <td>{{ project.name }}</td>
-                <td>{{ project.description }}</td>
-                <td>{{ project.start_date }}</td>
-                <td>{{ project.sum_hours_work }}</td>
-                <td>
-                    <a href="{% url 'projects_app:details' project.id %}" class="btn btn-xs btn-primary" role="button">Pokaż więcej</a>
-                </td>
-            </tr>
-        {% endfor %}
-        </table>
-    {% else %}
-        <p>Nie masz żadnych projektów</p>
-    {% endif %}
+    <div class="container">
+        <a href="{% url 'projects_app:add' %}" class="btn btn-success" role="button">Create new project</a>
+        {% if projects %}
+            <table class="table table-hover">
+                <tr>
+                    <th>Name</th>
+                    <th>Run date</th>
+                    <th>End date</th>
+                    <th>Worked time</th>
+                </tr>
+                {% for project in projects %}
+                <tr>
+                    <td><a href="{% url 'projects_app:details' project.id %}">{{ project.name }}</a></td>
+                    <td>{{ project.start_date|default:"not set" }}</td>
+                    <td>{{ project.finish_date|default:"not set" }}</td>
+                    <td>{{ project.sum_hours_work }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>There is no projects</p>
+        {% endif %}
+    </div>
 
 {% endblock %}
