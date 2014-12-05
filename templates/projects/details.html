@@ -3,51 +3,52 @@
 
 {% block content %}
 
-
-        <div class="page-header">
+    <div class="page-header">
         <h1>{{ project.name }}</h1>
-        <p class="lead">{{ project.description }}</p>
+        <p class="lead">{{ project.description|linebreaks }}</p>
+    </div>
 
-        <h3>Link do repozytorium:</h3>
-        <a href="{{ project.link_repository }}">{{ project.link_repository }}</a>
-
-        <h3>Data rozpoczęcia projektu:</h3>
-        <p>{{ project.start_date }}</p>
-
-        <h3>Data zakończenia projektu:</h3>
-        <p>{{ project.finish_date }}</p>
-
-        <h3>Łączny czas pracy nad projektem:</h3>
-        <p>{{ time }}</p>
-        </div>
-
-        <h3>Zadania w projekcie:</h3>
+    <div class="container">
+        <h3>Details</h3>
+        <dl class="dl-horizontal">
+            <dt>Project repository</dt>
+            <dd><a href="{{ project.link_repository }}">{{ project.link_repository }}</a></dd>
+            <dt>Run date</dt>
+            <dd>{{ project.start_date }}</dd>
+            <dt>Finish date</dt>
+            <dd>{{ project.finish_date }}</dd>
+            <dt>Summary worked time</dt>
+            <dd>{{ time }}</dd>
+        </dl>
+        <h3>Description</h3>
+            {{ project.description|default:"There is no description"|linebreaks }}
+        <h3>All tasks</h3>
         {% if tasks %}
             <table class="table table-hover">
                 <tr>
-                    <th>Nazwa</th>
-                    <th>Opis</th>
-                    <th>Czas</th>
-                    <th>Akcja</th>
+                    <th>Name</th>
+                    <th>Worked time</th>
+                    <th>Timer</th>
                 </tr>
                 {% for task in tasks %}
                     <tr>
-                        <td>{{ task.name }}</td>
-                        <td>{{ task.description }}</td>
+                        <td>
+                            <a href="{% url 'tasks_app:details' task.id %}">{{ task.name }}</a>
+                        </td>
                         <td>{{ task.time }}</td>
                         <td>
                             {% if task.start_time %}
-                                <!-- Jak tutaj odwyływać się do linku w href np. /tasks/task.id/stop ??  -->
-                                <a href="/tasks/{{ task.id }}/stop" class="btn btn-danger btn-xs" role="button">STOP</a>
+                                <a href="{% url 'tasks_app:stop' task.id %}" class="btn btn-danger btn-xs" role="button">STOP</a>
                             {% else %}
-                                <a href="/tasks/{{ task.id }}/start" class="btn btn-success btn-xs" role="button">START</a>
+                                <a href="{% url 'tasks_app:start' task.id %}" class="btn btn-success btn-xs" role="button">START</a>
                             {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
             </table>
         {% else %}
-            <p>Nie masz żadnych zadań</p>
+            <p>There is no items</p>
         {% endif %}
+    </div>
 
 {% endblock %}

@@ -29,7 +29,6 @@ class AddProject(FormView):
 class ProjectDetails(TemplateView):
     template_name = 'projects/details.html'
 
-
     def get_context_data(self, **kwargs):
         context = super(ProjectDetails, self).get_context_data(**kwargs)
         tasks = Task.objects.filter(project_id=kwargs['id'])

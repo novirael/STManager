@@ -3,35 +3,35 @@
 
 {% block content %}
 
-    <h2>Twoje wszystkie zadania:</h2>
-    <a href="{% url 'tasks_app:add' %}" class="btn btn-primary" role="button">Dodaj zadanie</a>
-    {% if tasks %}
-        <table class="table table-hover">
-            <tr>
-                <th>Nazwa</th>
-                <th>Opis</th>
-                <th>Czas</th>
-                <th>Akcja</th>
-                <th>Więcej</th>
-            </tr>
-        {% for task in tasks %}
-            <tr>
-                <td>{{ task.name }}</td>
-                <td>{{ task.description }}</td>
-                <td>{{ task.time }}</td>
-                <td>
-                    {% if task.start_time %}
-                        <a href="{% url 'tasks_app:stop' task.id %}" class="btn btn-xs btn-danger" role="button">Stop</a>
-                    {% else %}
-                        <a href="{% url 'tasks_app:start' task.id %}" class="btn btn-xs btn-success" role="button">Start</a>
-                    {% endif %}
-                </td>
-                <td><a href="{% url 'tasks_app:details' task.id %}" class="btn btn-xs btn-primary" role="button">Szczegóły</a></td>
-            </tr>
-        {% endfor %}
-        </table>
-    {% else %}
-        <p>Nie masz żadnych zadań</p>
-    {% endif %}
+    <div class="page-header">
+        <h1>All your tasks</h1>
+    </div>
 
+    <div class="container">
+        <a href="{% url 'tasks_app:add' %}" class="btn btn-success" role="button">Create new task</a>
+        {% if tasks %}
+            <table class="table table-hover">
+                <tr>
+                    <th>Name</th>
+                    <th>Worked time</th>
+                    <th>Timer</th>
+                </tr>
+                {% for task in tasks %}
+                <tr>
+                    <td><a href="{% url 'tasks_app:details' task.id %}">{{ task.name }}</a></td>
+                    <td>{{ task.time }}</td>
+                    <td>
+                        {% if task.start_time %}
+                            <a href="{% url 'tasks_app:stop' task.id %}" class="btn btn-xs btn-danger" role="button">Stop</a>
+                        {% else %}
+                            <a href="{% url 'tasks_app:start' task.id %}" class="btn btn-xs btn-success" role="button">Start</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>There is no tasks</p>
+        {% endif %}
+    </div>
 {% endblock %}
