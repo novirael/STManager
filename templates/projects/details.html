@@ -18,7 +18,7 @@
             <dt>Finish date</dt>
             <dd>{{ project.finish_date }}</dd>
             <dt>Summary worked time</dt>
-            <dd>{{ time }}</dd>
+            <dd>{{ project.total_time }}</dd>
         </dl>
         <h3>Description</h3>
             {{ project.description|default:"There is no description"|linebreaks }}

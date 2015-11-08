@@ -3,7 +3,7 @@ from projects.models import Project
 
 
 class Task(models.Model):
-    project = models.ForeignKey(Project)
+    project = models.ForeignKey(Project, related_name="tasks")
     name = models.CharField(max_length=128)
     description = models.TextField(blank=True)
     time = models.IntegerField(default=0)

@@ -12,3 +12,10 @@ class Project(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @property
+    def total_time(self):
+        time = 0
+        for task in self.tasks.all():
+            time += task.time
+        return time
