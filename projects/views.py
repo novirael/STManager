@@ -5,11 +5,11 @@ from projects.models import Project
 from projects.forms import ProjectForm
 
 
-class AllProjectView(TemplateView):
+class ProjectIndex(TemplateView):
     template_name = 'projects/index.html'
 
     def get_context_data(self, **kwargs):
-        context = super(AllProjectView, self).get_context_data(**kwargs)
+        context = super(ProjectIndex, self).get_context_data(**kwargs)
         context['projects'] = Project.objects.all()
         return context
 
