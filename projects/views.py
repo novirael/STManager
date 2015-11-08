@@ -14,16 +14,6 @@ class ProjectIndex(TemplateView):
         return context
 
 
-class AddProject(FormView):
-    template_name = 'projects/add.html'
-    form_class = ProjectForm
-    success_url = reverse_lazy('projects_app:index')
-
-    def form_valid(self, form):
-        form.save()
-        return super(AddProject, self).form_valid(form)
-
-
 class ProjectDetails(TemplateView):
     template_name = 'projects/details.html'
 
@@ -33,3 +23,13 @@ class ProjectDetails(TemplateView):
         context['project'] = project
         context['tasks'] = project.tasks.all()
         return context
+
+
+class ProjectCreate(FormView):
+    template_name = 'projects/create.html'
+    form_class = ProjectForm
+    success_url = reverse_lazy('projects_app:index')
+
+    def form_valid(self, form):
+        form.save()
+        return super(ProjectCreate, self).form_valid(form)

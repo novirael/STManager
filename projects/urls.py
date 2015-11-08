@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url
 from django.contrib import admin
 
-from projects.views import AddProject, ProjectIndex, ProjectDetails
+from projects.views import ProjectCreate, ProjectIndex, ProjectDetails
 
 
 admin.autodiscover()
@@ -9,6 +9,6 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     url(r'^$', ProjectIndex.as_view(), name='index'),
-    url(r'^add/$', AddProject.as_view(), name='add'),
-    url(r'^(?P<id>\d+)/$', ProjectDetails.as_view(), name='details'),
+    url(r'^create/$', ProjectCreate.as_view(), name='create'),
+    url(r'^details/(?P<id>\d+)/$', ProjectDetails.as_view(), name='details'),
 )

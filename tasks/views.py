@@ -25,19 +25,19 @@ class TaskDetails(TemplateView):
         return context
 
 
-class AddTask(FormView):
-    template_name = 'tasks/add.html'
+class TaskCreate(FormView):
+    template_name = 'tasks/create.html'
     form_class = TaskForm
     success_url = reverse_lazy('tasks_app:index')
 
     def get_context_data(self, **kwargs):
-        context = super(AddTask, self).get_context_data(**kwargs)
+        context = super(TaskCreate, self).get_context_data(**kwargs)
         context['project'] = Project.objects.all().values()
         return context
 
     def form_valid(self, form):
         form.save()
-        return super(AddTask, self).form_valid(form)
+        return super(TaskCreate, self).form_valid(form)
 
 
 class StartTask(RedirectView):
