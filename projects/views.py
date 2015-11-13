@@ -1,7 +1,9 @@
-from django.views.generic import TemplateView, FormView
+from django.http import Http404
+
+from django.views.generic import TemplateView, FormView, RedirectView
 from django.core.urlresolvers import reverse_lazy
 
-from projects.models import Project
+from projects.models import Project, NotSetTrelloBoardID
 from projects.forms import ProjectForm
 
 
@@ -33,3 +35,22 @@ class ProjectCreate(FormView):
     def form_valid(self, form):
         form.save()
         return super(ProjectCreate, self).form_valid(form)
+
+
+class SyncWithTrello(RedirectView):
+    permanent = False
+    query_string = True,
+
+    def get_redirect_url(self, *args, **kwargs):
+        return reverse_lazy('projects_app:details', kwargs={
+            "id": kwargs['id']
+        })
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            bms = Project.objects.get(id=kwargs['id'])
+            bms.sync_trello_cards()
+        except (Project.DoesNotExist, NotSetTrelloBoardID):
+            raise Http404
+
+        return super(SyncWithTrello, self).dispatch(request, *args, **kwargs)

@@ -15,3 +15,6 @@ class Task(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        ordering = ['-trello_last_activity']
