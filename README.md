@@ -1,10 +1,17 @@
-# STManager - Simple Task Manager
+# Simple Projects Manager
 
-## STManager working flow
+This is demo for [django-projects-manager](https://github.com/novirael/django-projects-manager) package.
 
-1. Przypisuje się do dostępnego w [Trello](https://trello.com/b/pCtpbisz/stmanager) w liście "to do" story oraz przenoszę je do listy "Doing"
-2. Wybranchowuje się z najnowszego mastera, nazwa nowego brancha powinna zawierać przynajmniej #id danego story
-3. Wprowadzam nowe zmiany zgodnie z opisem danego story.
-4. Gdy skończyłem pracę nad danym story rebasuje się z masterem. Gdy jestem pewien swoich zmian i kod zgadza się z wymogami pep8 wystawiam PR do mastera na githubie. Tytuł PR powinien zgadzać się z tytułem story w Trello.
-5. Czekam aż inna osoba zrobi mi code review, jeżeli są jakieś uwagi to je poprawiam.
-6. Twój kod jest mergowany do mastera :)
+## Quick start
+
+1. Create virtualenv for Python3:
+```mkvirtualenv --python=`which python3` spm```
+
+2. Install requirements:
+```pip install -r requrements.txt```
+
+3. Run migrations:
+```./manage.py migrate```
+
+4. Run django app:
+```./manage.py runserver```
