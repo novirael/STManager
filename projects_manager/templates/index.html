@@ -8,7 +8,8 @@
     </div>
 
     <div class="container">
-        <a href="{% url 'projects_app:create' %}" class="btn btn-success" role="button">Create new project</a>
+        <a href="{% url 'projects_manager:create_project' %}" class="btn btn-success" role="button">Create new project</a>
+        <a href="{% url 'projects_manager:create_task' %}" class="btn btn-default" role="button">Add new task</a>
         {% if projects %}
             <table class="table table-hover">
                 <tr>
@@ -19,7 +20,7 @@
                 </tr>
                 {% for project in projects %}
                 <tr>
-                    <td><a href="{% url 'projects_app:details' project.id %}">{{ project.name }}</a></td>
+                    <td><a href="{% url 'projects_manager:details' project.id %}">{{ project.name }}</a></td>
                     <td>{{ project.start_date|default:"not set" }}</td>
                     <td>{{ project.finish_date|default:"not set" }}</td>
                     <td>{{ project.total_time }}</td>

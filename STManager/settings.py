@@ -40,10 +40,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap_toolkit',
     'bootstrapform',
-    'tasks',
-    'projects',
+    'projects_manager',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -92,10 +90,3 @@ STATICFILES_DIRS = (
 )
 
 STATIC_URL = '/static/'
-
-TRELLO_KEYS = {
-    'api_key': os.environ.get('TRELLO_API'),
-    'api_secret': os.environ.get('TRELLO_API_SECRET'),
-    'token': os.environ.get('TRELLO_TOKEN'),
-    'token_secret': os.environ.get('TRELLO_TOKEN_SECRET'),
-}

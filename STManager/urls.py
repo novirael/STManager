@@ -9,7 +9,6 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     url(r'^$', Home.as_view(), name='home'),
-    url(r'^tasks/', include('tasks.urls', namespace='tasks_app')),
-    url(r'^projects/', include('projects.urls', namespace='projects_app')),
+    url(r'^projects-manager/', include('projects_manager.urls', namespace='projects_manager')),
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -1,3 +1,4 @@
+import os
 import logging
 
 from django.db import models
@@ -5,9 +6,15 @@ from django.utils import timezone
 
 from trello import TrelloClient
 
-from STManager.settings import TRELLO_KEYS
-
 logger = logging.getLogger(__name__)
+
+
+TRELLO_KEYS = {
+    'api_key': os.environ.get('TRELLO_API'),
+    'api_secret': os.environ.get('TRELLO_API_SECRET'),
+    'token': os.environ.get('TRELLO_TOKEN'),
+    'token_secret': os.environ.get('TRELLO_TOKEN_SECRET'),
+}
 
 
 class NotSetTrelloBoardID(Exception):
@@ -45,8 +52,6 @@ class Project(models.Model):
         client = TrelloClient(**TRELLO_KEYS)
         tasks = client.fetch_json("boards/{}/cards".format(self.trello_id))
 
-        from tasks.models import Task
-
         for task_dict in tasks:
             last_activity = task_dict.get('dateLastActivity')
             task, created = Task.objects.get_or_create(
@@ -66,3 +71,21 @@ class Project(models.Model):
                     task_dict['name'],
                     'created' if created else 'updated'
                 )
+
+
+class Task(models.Model):
+    project = models.ForeignKey(Project, related_name="tasks")
+    name = models.CharField(max_length=128)
+    description = models.TextField(blank=True)
+    time = models.IntegerField(default=0)
+    start_time = models.DateTimeField(null=True, blank=True)
+
+    trello_id = models.CharField(max_length=32, blank=True)
+    trello_url = models.URLField(max_length=256, blank=True)
+    trello_last_activity = models.DateTimeField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['-trello_last_activity']

@@ -10,7 +10,7 @@
 
     <div class="container">
     <p class="lead">
-        <a class="btn btn-default {% if not project.trello_id %}disabled{% endif %}" href="{% url 'projects_app:sync' project.id %}">Sync Project with Trello</a></p>
+        <a class="btn btn-default {% if not project.trello_id %}disabled{% endif %}" href="{% url 'projects_manager:sync' project.id %}">Sync Project with Trello</a></p>
         <h3>Details</h3>
         <dl class="dl-horizontal">
             <dt>Project repository</dt>
@@ -35,14 +35,14 @@
                 {% for task in tasks %}
                     <tr>
                         <td>
-                            <a href="{% url 'tasks_app:details' task.id %}">{{ task.name }}</a>
+                            <a href="{% url 'projects_manager:task_details' task.id %}">{{ task.name }}</a>
                         </td>
                         <td>{{ task.time }}</td>
                         <td>
                             {% if task.start_time %}
-                                <a href="{% url 'tasks_app:stop' task.id %}" class="btn btn-danger btn-xs" role="button">STOP</a>
+                                <a href="{% url 'projects_manager:stop' task.id %}" class="btn btn-danger btn-xs" role="button">STOP</a>
                             {% else %}
-                                <a href="{% url 'tasks_app:start' task.id %}" class="btn btn-success btn-xs" role="button">START</a>
+                                <a href="{% url 'projects_manager:start' task.id %}" class="btn btn-success btn-xs" role="button">START</a>
                             {% endif %}
                         </td>
                     </tr>
