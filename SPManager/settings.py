@@ -1,5 +1,5 @@
 """
-Django settings for STManager project.
+Django settings for SPManager project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -53,9 +53,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'STManager.urls'
+ROOT_URLCONF = 'SPManager.urls'
 
-WSGI_APPLICATION = 'STManager.wsgi.application'
+WSGI_APPLICATION = 'SPManager.wsgi.application'
 
 
 # Database

@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
-from STManager.views import Home
+from SPManager.views import Home
 
 
 admin.autodiscover()
